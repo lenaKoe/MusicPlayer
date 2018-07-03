@@ -1,0 +1,23 @@
+.progress-display-bar {
+    background-color: rgb(221, 221, 221);
+    padding: 5px 15px;
+}
+
+.time-display {
+    font-family: Ubuntu, sans-serif;
+    color: rgb(51, 51, 51);
+}
+
+.full-progressbar {
+    background-color: purple;
+    width: 100%;
+    position: relative;
+    border-bottom: 10px solid gold;
+}
+
+.time-line-progress {
+    z-index: 200;
+    position: absolute;
+    border-bottom: 10px solid purple;
+}
+

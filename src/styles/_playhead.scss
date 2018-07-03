@@ -1,0 +1,38 @@
+.playlist-heading {
+    color: white;
+    font-family: "Francois One", sans-serif;
+    background-color: darkmagenta;
+    padding: 30px 20px;
+    border-radius: 20px 20px 0px 0px;
+    @media (max-width: 576px) {
+        border-radius: 0px;
+        padding: 20px 10px;
+    }
+}
+
+.button-add-song {
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(230, 230, 230, 0.5);
+    font-family: Ubuntu, sans-serif;
+    float: right;
+    padding: 10px 20px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 5px;
+    .plus-icon {
+        padding-right: 10px;
+    }
+}
+
+.button-add-song:hover {
+    background-color: gold;
+    color: rgb(51, 51, 51);
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}

@@ -1,0 +1,25 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    height: calc(100% - 78px);
+    position: relative;
+    top: 78px;
+    background: radial-gradient(rgba(157, 24, 184, 0.3), rgba(115, 116, 117, 0.9));
+    @media (max-width: 576px) {
+        height: calc(100% - 64px);
+        top: 64px;
+    }
+}
+
+.no-padding-xs {
+    @media (max-width: 576px) {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}

@@ -1,0 +1,66 @@
+
+.info-heading-of-current-playlist {
+    color: rgba(230, 230, 230, 0.5);
+    font-family: Ubuntu, sans-serif;
+    text-transform: uppercase;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding-right: 15px;
+    background-color: purple;
+    .item {
+        padding: 15px 10px;
+        @media (max-width: 576px) {
+            padding: 10px;
+        }
+    }
+}
+
+.divider-top {
+    border-top: 1px solid rgba(230, 230, 230, 0.5);
+}
+
+.item p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
+.play-image {
+    background: linear-gradient(rgba(85, 85, 85, 0.7), rgba(157, 24, 184, 0.8)) center center / cover, url(../../src/img/kasette.png) no-repeat;
+    background-position: center center;
+}
+
+.play-image .current-play-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: rgb(51, 51, 51);
+    max-height: calc((((((100vh - 78px) - 32px) - 166px) - 190px) - 75px) - 80px);
+    background: radial-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+    list-style: none;
+    margin: 0px;
+    @media (max-width: 576px) {
+        max-height: calc(((((100vh - 64px) - 32px) - 136px) - 136px) - 55px);
+    }
+}
+
+.playlist-item {
+    font-family: Ubuntu, sans-serif;
+    border-bottom: 1px solid rgba(85, 85, 85, 0.3);
+}
+
+.playlist-item:hover {
+    cursor: pointer;
+    background-color: rgba(230, 230, 230, 0.5);
+}
+
+.active-song {
+    color: white;
+    background: rgba(85, 85, 85, 0.3);
+}
+
+.item {
+    padding: 10px 20px;
+}
