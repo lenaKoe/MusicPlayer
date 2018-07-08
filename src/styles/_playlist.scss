@@ -1,22 +1,22 @@
 
 .info-heading-of-current-playlist {
-    color: rgba(230, 230, 230, 0.5);
-    font-family: Ubuntu, sans-serif;
+    color: $light-background;
+    font-family: $secondary-font;
     text-transform: uppercase;
     justify-content: space-between;
     font-size: 0.8rem;
     padding-right: 15px;
-    background-color: purple;
+    background-color: $primary-color;
     .item {
         padding: 15px 10px;
-        @media (max-width: 576px) {
+        @media (max-width: $smartphone-screensize) {
             padding: 10px;
         }
     }
 }
 
 .divider-top {
-    border-top: 1px solid rgba(230, 230, 230, 0.5);
+    border-top: 1px solid $light-background;
 }
 
 .item p {
@@ -26,8 +26,9 @@
 }
 
 .play-image {
-    background: linear-gradient(rgba(85, 85, 85, 0.7), rgba(157, 24, 184, 0.8)) center center / cover, url(../../src/img/kasette.png) no-repeat;
-    background-position: center center;
+    background: linear-gradient(rgba(85, 85, 85, 0.7), rgba(157, 24, 184, 0.8)), url(../../src/img/kassette.jpg) no-repeat;
+    background-position: center;
+    background-size:cover;
 }
 
 .play-image .current-play-list {
@@ -41,24 +42,24 @@
     background: radial-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
     list-style: none;
     margin: 0px;
-    @media (max-width: 576px) {
+    @media (max-width: $smartphone-screensize) {
         max-height: calc(((((100vh - 64px) - 32px) - 136px) - 136px) - 55px);
     }
 }
 
 .playlist-item {
-    font-family: Ubuntu, sans-serif;
-    border-bottom: 1px solid rgba(85, 85, 85, 0.3);
+    font-family: $secondary-font;
+    border-bottom: 1px solid $dark-background;
 }
 
 .playlist-item:hover {
     cursor: pointer;
-    background-color: rgba(230, 230, 230, 0.5);
+    background-color: $light-background;
 }
 
 .active-song {
     color: white;
-    background: rgba(85, 85, 85, 0.3);
+    background: $dark-background;
 }
 
 .item {

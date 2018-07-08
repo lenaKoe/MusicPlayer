@@ -1,7 +1,6 @@
-
-import { AudioElement } from "./AudioElement";
-import { Playlist } from "./Playlist";
-import { Song } from "./Song";
+import { AudioElement } from './AudioElement.js';
+import { Playlist } from "./Playlist.js";
+import { Song } from "./Song.js";
 
 
 var tag = document.getElementById("audio-element");
@@ -14,12 +13,12 @@ var volumeUpButton = document.getElementById("volumeup-button");
 var backwardButton = document.getElementById("backward-button");
 var forwardButton = document.getElementById("forward-button");
 var progress = document.getElementById("current-progress");
-var duration = tag.duration;
+//var duration = tag.duration;
 var displayCurrentTime = document.getElementById("current-time");
 var displayFullTime = document.getElementById("duration");
 var artistHeading = document.getElementById("big-artist-heading");
 var titleHeading = document.getElementById("big-title-heading");
-var audioSource = document.getElementById("source");
+//var audioSource = document.getElementById("source");
 var coverImage = document.getElementById("cover-image");
 var titlesRow = document.getElementsByClassName("title-item");
 var artistsRow = document.getElementsByClassName("artist-item");

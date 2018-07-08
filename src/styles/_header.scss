@@ -1,12 +1,12 @@
 .header .navbar {
     width: auto;
-    font-family: "Francois One", sans-serif;
-    background-color: gold;
+    font-family: $primary-font;
+    background-color: $secondary-color;
     z-index: 100;
     max-width: 100vw;
 }
 
 .logo {
-    fill: purple;
+    fill: $primary-color;
     height: 52px;
 }

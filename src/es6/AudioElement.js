@@ -1,4 +1,4 @@
-class AudioElement {
+export class AudioElement{
     constructor(tag, playButton, pauseButton, volumeDownButton, volumeOffButton, volumeOnButton, volumeUpButton, progress, displayCurrentTime, displayFullTime, artistHeading, titleHeading, coverImage) {
 
         this.tag = tag;

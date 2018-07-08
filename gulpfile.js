@@ -1,8 +1,12 @@
 //REQUIRED MODULES
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    babel = require('gulp-babel'),
-    browserSync = require('browser-sync').create();
+const gulp = require('gulp'),
+      sass = require('gulp-sass'),
+      browserSync = require('browser-sync').create();
+      babelify = require('babelify'),
+      browserify = require ('browserify'),
+      source = require ('vinyl-source-stream'),
+      buffer = require ('vinyl-buffer');
+    
 
 //GULP TASKS
 gulp.task('sass', function() {
@@ -14,25 +18,31 @@ gulp.task('sass', function() {
     }))
 });
 
-gulp.task('browserSync', function(){
+gulp.task('browserSync', () =>
   browserSync.init({
     server: {
       baseDir:'./'
     },
   })
-})
+);
 
-gulp.task('babel', function () {
-  return gulp.src("src/es6/app.js")
-    .pipe(babel())
-    .pipe(gulp.dest("es5"));
+gulp.task("es6", () =>  {
+  browserify('./src/es6/app.js')
+    .transform("babelify", {
+      presets: ["es2015"]
+    })
+    .bundle()
+    .pipe(source("app.js"))
+    .pipe(buffer())
+    .pipe(gulp.dest("./build/es5/"));
 });
 
 //WATCH
-gulp.task('watch', function(){
+gulp.task('watch', () => {
   gulp.watch('src/styles/*.scss', ['sass']);
   gulp.watch('index.html', browserSync.reload);
 });
 
-//DEFAULT
-gulp.task('default', ['sass', 'watch', 'babel','browserSync']);
+//DEFAULT 
+gulp.task('default', ['sass', 'es6', 'browserSync', 'watch']);
+

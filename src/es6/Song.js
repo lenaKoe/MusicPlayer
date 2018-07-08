@@ -1,4 +1,4 @@
-export class Song {
+export class Song{
     constructor(title, artist, cover, source) {
         this.title = title;
         this.artist = artist;

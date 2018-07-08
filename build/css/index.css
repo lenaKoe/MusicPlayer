@@ -1,3 +1,8 @@
+/*extra small: <576 xs
+*small: > 576 sm
+*medium: > 720px md
+*large: > 992px lg
+*extra large > 1200 px */
 .audio-control-bar {
   background-color: white;
   border-radius: 0px 0px 20px 20px; }
@@ -9,10 +14,7 @@
   color: #333333;
   background-color: white;
   padding: 30px;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial; }
+  border-width: 0px; }
   @media (max-width: 576px) {
     .control {
       padding: 20px; } }
@@ -46,13 +48,13 @@ html, body {
   padding: 0px; }
 
 main {
-  height: calc(100% - 78px);
+  height: calc(100vh - 78px);
   position: relative;
   top: 78px;
   background: radial-gradient(rgba(157, 24, 184, 0.3), rgba(115, 116, 117, 0.9)); }
   @media (max-width: 576px) {
     main {
-      height: calc(100% - 64px);
+      height: calc(100vh - 64px);
       top: 64px; } }
 
 @media (max-width: 576px) {
@@ -86,13 +88,10 @@ main {
   cursor: pointer;
   color: white;
   background-color: rgba(230, 230, 230, 0.5);
-  font-family: Ubuntu, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   float: right;
   padding: 10px 20px;
-  border-width: initial;
   border-style: none;
-  border-color: initial;
-  border-image: initial;
   border-radius: 5px; }
   .button-add-song .plus-icon {
     padding-right: 10px; }
@@ -107,7 +106,7 @@ main {
 
 .info-heading-of-current-playlist {
   color: rgba(230, 230, 230, 0.5);
-  font-family: Ubuntu, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   text-transform: uppercase;
   justify-content: space-between;
   font-size: 0.8rem;
@@ -128,8 +127,9 @@ main {
   margin-bottom: 0px; }
 
 .play-image {
-  background: linear-gradient(rgba(85, 85, 85, 0.7), rgba(157, 24, 184, 0.8)) center center/cover, url(../../src/img/kasette.png) no-repeat;
-  background-position: center center; }
+  background: linear-gradient(rgba(85, 85, 85, 0.7), rgba(157, 24, 184, 0.8)), url(../../src/img/kassette.jpg) no-repeat;
+  background-position: center;
+  background-size: cover; }
 
 .play-image .current-play-list {
   display: flex;
@@ -147,7 +147,7 @@ main {
       max-height: calc(((((100vh - 64px) - 32px) - 136px) - 136px) - 55px); } }
 
 .playlist-item {
-  font-family: Ubuntu, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   border-bottom: 1px solid rgba(85, 85, 85, 0.3); }
 
 .playlist-item:hover {
@@ -170,8 +170,8 @@ main {
   height: 150px;
   width: 141px;
   background-image: url(../../src/img/placeholder.png);
+  background-position: center;
   background-size: cover;
-  background-position: center center;
   border-radius: 20px;
   margin: 20px; }
 
@@ -198,7 +198,7 @@ main {
   padding: 5px 15px; }
 
 .time-display {
-  font-family: Ubuntu, sans-serif;
+  font-family: "Ubuntu", sans-serif;
   color: #333333; }
 
 .full-progressbar {

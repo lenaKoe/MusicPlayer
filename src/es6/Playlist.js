@@ -1,4 +1,4 @@
-export class Playlist {
+export class Playlist{
     constructor(songs, titlesRow, artistsRow, durationsRow, playlistRow, item) {
         this.songs = songs;
         this.titlesRow = titlesRow;

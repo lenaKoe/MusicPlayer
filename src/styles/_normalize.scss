@@ -7,18 +7,18 @@ html, body {
 }
 
 main {
-    height: calc(100% - 78px);
+    height: $content-height-desktop;
     position: relative;
     top: 78px;
     background: radial-gradient(rgba(157, 24, 184, 0.3), rgba(115, 116, 117, 0.9));
-    @media (max-width: 576px) {
-        height: calc(100% - 64px);
+    @media (max-width: $smartphone-screensize) {
+        height: $content-height-mobile;
         top: 64px;
     }
 }
 
 .no-padding-xs {
-    @media (max-width: 576px) {
+    @media (max-width: $smartphone-screensize) {
         padding-left: 0px;
         padding-right: 0px;
     }

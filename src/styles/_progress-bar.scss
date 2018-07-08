@@ -4,20 +4,20 @@
 }
 
 .time-display {
-    font-family: Ubuntu, sans-serif;
+    font-family: $secondary-font;
     color: rgb(51, 51, 51);
 }
 
 .full-progressbar {
-    background-color: purple;
+    background-color: $primary-color;
     width: 100%;
     position: relative;
-    border-bottom: 10px solid gold;
+    border-bottom: 10px solid $secondary-color;
 }
 
 .time-line-progress {
     z-index: 200;
     position: absolute;
-    border-bottom: 10px solid purple;
+    border-bottom: 10px solid $primary-color;
 }
 
