@@ -56,15 +56,15 @@ window.addEventListener("load", function () {
         });
     }
 });
+playButton.addEventListener("click", function () {
+    audioElement.play();
+});
 backwardButton.addEventListener("click", function () {
     audioElement.setSong(playlist.getCurrentSong());
     audioElement.play();
 });
 forwardButton.addEventListener("click", function () {
     audioElement.setSong(playlist.getCurrentSong());
-    audioElement.play();
-});
-playButton.addEventListener("click", function () {
     audioElement.play();
 });
 pauseButton.addEventListener("click", function () {
