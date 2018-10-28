@@ -1,13 +1,23 @@
+import { runInThisContext } from "vm";
+
 export class Playlist{
-    constructor(songs, title) {
+    constructor(songs, listTitle) {
         this.songs = songs;
-        this.title = title;
+        this.listTitle = listTitle;
         this.currentSongIndex = 0;
         
         this.switchToSong = this.switchToSong.bind(this);
         this.getCurrentSong = this.getCurrentSong.bind(this);
         this.getNextSong = this.getNextSong.bind(this);
         this.getPreviousSong = this.getPreviousSong.bind(this);
+    }
+
+    getListTitle(){
+        return this.listTitle;
+    }
+
+    getSongs(){
+        return this.songs;
     }
 
     switchToSong(index) { 

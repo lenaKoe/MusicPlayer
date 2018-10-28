@@ -1,4 +1,6 @@
-import { AudioElement } from "./AudioElement"; //-> Warum hatten wir das Audio Element importiert?
+import {
+    AudioElement
+} from "./AudioElement"; //-> Warum hatten wir das Audio Element importiert?
 
 const UIElements = {
     playButton: document.getElementById("play-button"),
@@ -18,18 +20,18 @@ const UIElements = {
     titlesRow: document.getElementsByClassName("title-item"),
     artistsRow: document.getElementsByClassName("artist-item"),
     durationsRow: document.getElementsByClassName("duration-item"),
-    playlistRow: document.getElementById("playlist-row"),
     items: document.getElementsByClassName("playlist-item"),
     tag: document.getElementById("audio-element"),
     displayCurrentTime: document.getElementById("current-time"),
-    displayFullTime:document.getElementById("duration")
+    displayFullTime: document.getElementById("duration"),
+    lists: document.getElementsByClassName("list-title"),
+    playTitle: document.getElementById("playlist-title")
 }
 
 export default UIElements;
 
 export class UIManager {
-    constructor() {
-    }
+    constructor() {}
 
     static setMetadata(song) {
         UIElements.titleHeading.innerHTML = song.getTitle();
@@ -37,27 +39,58 @@ export class UIManager {
         UIElements.coverImage.style.backgroundImage = "url(" + song.getCover() + ")";
     }
 
+    static setListTitle(playlist) {
+        UIElements.playTitle.innerHTML = playlist;
+    }
+
+    //Beim Playlist bauen nicht das Div als default kopieren
     static buildPlaylist(songs) {
+        console.log(UIElements.items.length);
+        if (UIElements.items.length > 1) {
+            console.log("Da muss was gelöscht werden")
+            for (var i = 1; i < UIElements.items.length; i++) {
+                var original = UIElements.items[i];
+                var parent = original.parentNode;
+                original.parentNode.removeChild(original);
+                console.log(parent);
+            }
+        }
         UIElements.artistsRow[0].innerHTML = songs[0].getArtist();
         UIElements.titlesRow[0].innerHTML = songs[0].getTitle();
         UIElements.durationsRow[0].innerHTML = songs[0].getDuration();
-
         for (var i = 1; i < songs.length; i++) {
-            var original = UIElements.playlistRow;
+            var original = UIElements.items[0];
             var copy = original.cloneNode(true);
             original.parentNode.appendChild(copy);
-            UIElements.artistsRow[0].innerHTML = songs[i].getArtist(); 
+            UIElements.artistsRow[0].innerHTML = songs[i].getArtist();
             UIElements.titlesRow[0].innerHTML = songs[i].getTitle();
-            UIElements.durationsRow[0].innerHTML = songs[i].getDuration();0        
+            UIElements.durationsRow[0].innerHTML = songs[i].getDuration();
+        }
+    }
+
+    static buildPlaylistTitles(playlists) {
+        UIElements.lists[0].innerHTML = playlists[0].getListTitle();
+        for (var i = 1; i < playlists.length; i++) {
+            var original = UIElements.lists[0];
+            var copy = original.cloneNode(true);
+            original.parentNode.appendChild(copy);
+            UIElements.lists[0].innerHTML = playlists[i].getListTitle();
+        }
+    }
+
+    static setListIndex(playlists) {
+        for (var i = 0; i < UIElements.lists.length; i++) {
+            var listTitle = UIElements.lists[i].innerHTML;
+            UIElements.lists[i].dataset.indexNumber = playlists.findIndex(function (playlist) {
+                return listTitle === playlist.getListTitle();
+            })
         }
     }
 
     static setDataIndex(songs) {
-        UIElements.items[0].classList.add("active-song");
-
-        for (var i = 0; i <  UIElements.items.length; i++) {
-            var title =  UIElements.items[i].getElementsByClassName("title-item")[0].innerHTML;
-            UIElements.items[i].dataset.indexNumber = songs.findIndex(function(song) {
+        for (var i = 0; i < UIElements.items.length; i++) {
+            var title = UIElements.items[i].getElementsByClassName("title-item")[0].innerHTML;
+            UIElements.items[i].dataset.indexNumber = songs.findIndex(function (song) {
                 return title === song.getTitle();
             });
         }
@@ -86,9 +119,9 @@ export class UIManager {
     static setTime(currentTime, duration) {
         UIElements.displayCurrentTime.innerHTML = currentTime;
         UIElements.displayFullTime.innerHTML = duration;
-     }
+    }
 
-     static setProgress(progress) {
-         UIElements.progress.style.width = progress;
-     }
+    static setProgress(progress) {
+        UIElements.progress.style.width = progress;
+    }
 }

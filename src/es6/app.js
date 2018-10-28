@@ -1,6 +1,9 @@
+
+
 import { AudioElement } from './AudioElement.js';
 import { Playlist } from "./Playlist.js";
 import { Song } from "./Song.js";
+import { PlaylistManager } from "./PlaylistManager.js";
 import  UIElements, { UIManager } from './UIManager.js';
 
 var audioElement = new AudioElement(UIElements.tag);
@@ -18,26 +21,44 @@ var song10 = new Song("O Come All Ye Faithful", "Jingle Punks", "../../src/img/c
 var song11 = new Song("We Wish You a Merry Christmas", "Twin Musicom", "../../src/img/cover/merry-christmas.jpg", "src/audio/We_Wish_You_a_Merry_Christmas.mp3", "1:57");
 var song12 = new Song("The Black Cat", "Aaron Kenny", "../../src/img/cover/cat.jpg", "src/audio/The_Black_Cat.mp3", "2:30");
 
-var songs = [song1, song2, song3, song4, song5, song6, song7, song8, song9, song10, song11, song12];
-var playlist = null;
+var allSongs = [song1, song2, song3, song4, song5, song6, song7, song8, song9, song10, song11, song12];
+var christmasSongs = [song7, song8, song9, song10, song11];
+var animals = [song2, song12];
+var traditionalSongs = [song6];
+
+var playlist1 = new Playlist(allSongs, "All Songs");
+var playlist2 = new Playlist(christmasSongs, "Christmas Songs");
+var playlist3 = new Playlist(animals, "Honored To Animals");
+var playlist4 = new Playlist(traditionalSongs, "Traditional Songs");
+
+const playlists = new PlaylistManager([playlist1, playlist2, playlist3, playlist4])
+var playlist = playlists.getActivePlaylist();
+
+UIManager.buildPlaylist(playlist.getSongs());
+UIManager.setDataIndex(playlist.getSongs());
+UIManager.buildPlaylistTitles(playlists.getPlaylists());
+UIManager.setListIndex(playlists.getPlaylists())
 
 window.addEventListener("load", function () {
-    playlist = new Playlist(songs, "Alle Songs");
+    for (var i = 0; i < UIElements.lists.length; i++) {
+        UIElements.lists[i].addEventListener("mouseup", function() {
+            const index = Number.parseInt(this.getAttribute("data-index-number"));
+            playlists.switchToList(index);
+            UIManager.setListTitle(playlists.getActivePlaylist().getListTitle());
+            console.log(playlists.getActivePlaylist().getSongs());
+            UIManager.buildPlaylist(playlists.getActivePlaylist().getSongs());
+        });
+    }
+
     for (var i = 0; i < UIElements.items.length; i++) {
-        UIElements.items[i].addEventListener("mouseup", function () {
+        UIElements.items[i].addEventListener("mouseup", function() {
             const index = Number.parseInt(this.getAttribute("data-index-number"));
             playlist.switchToSong(index);
             audioElement.setSong(playlist.getCurrentSong());
             audioElement.play();
         });
     }
-    console.log(playlist);
 });
-
-
-
-UIManager.buildPlaylist(songs);
-UIManager.setDataIndex(songs);
 
 UIElements.playButton.addEventListener("mouseup", function () {
     audioElement.play();
