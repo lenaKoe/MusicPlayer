@@ -44,6 +44,9 @@ gulp.task('watch', () => {
   gulp.watch('index.html', browserSync.reload);
 });
 
+
 //DEFAULT 
 gulp.task('default', ['sass', 'es6', 'browserSync', 'watch']);
+gulp.task('build', ['sass', 'es6']);
+
 
