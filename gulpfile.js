@@ -40,6 +40,7 @@ gulp.task("es6", () =>  {
 //WATCH
 gulp.task('watch', () => {
   gulp.watch('src/styles/*.scss', ['sass']);
+  gulp.watch('src/es6/*.js', ['es6']);
   gulp.watch('index.html', browserSync.reload);
 });
 

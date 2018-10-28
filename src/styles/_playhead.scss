@@ -36,3 +36,55 @@
     border-color: initial;
     border-image: initial;
 }
+
+
+.button-add-song:focus {
+    outline: none !important; 
+}
+
+.dropbtn {
+    background-color:transparent;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: $light-grey;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(189, 189, 189, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content div {
+    color: $white;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0px;
+}
+
+.dropdown-content div:hover {
+    background-color: $secondary-color;
+    color: $primary-color;
+    cursor: pointer;
+}
+.dropbtn:focus {
+    outline: none !important;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    color: $secondary-color;
+}

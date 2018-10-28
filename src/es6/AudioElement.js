@@ -1,23 +1,13 @@
-export class AudioElement{
-    constructor(tag, playButton, pauseButton, volumeDownButton, volumeOffButton, volumeOnButton, volumeUpButton, progress, displayCurrentTime, displayFullTime, artistHeading, titleHeading, coverImage) {
-
+import UIElements, { UIManager } from "./UIManager";
+export class AudioElement {
+    constructor(tag) {
         this.tag = tag;
         this.audioSource = this.tag.querySelector("#source");
-        this.playButton = playButton;
-        this.pauseButton = pauseButton;
-        this.volumeDownButton = volumeDownButton;
-        this.volumeOffButton = volumeOffButton;
-        this.volumeOnButton = volumeOnButton;
-        this.volumeUpButton = volumeUpButton;
-        this.progress = progress;
-        this.displayCurrentTime = displayCurrentTime;
-        this.displayFullTime = displayFullTime;
-        this.artistHeading = artistHeading;
-        this.titleHeading = titleHeading;
-        this.coverImage = coverImage;
-        this.isPaused = false;
+
+        this.progress = document.getElementById("current-progress");
+        this.displayCurrentTime = document.getElementById("current-time");
+        this.displayFullTime = document.getElementById("duration");
         this.tag.volume = 0.5;
-        this.isClicked = false;
 
         this.play = this.play.bind(this);
         this.pause = this.pause.bind(this);
@@ -25,35 +15,30 @@ export class AudioElement{
         this.decreaseVolume = this.decreaseVolume.bind(this);
         this.volumeOff = this.volumeOff.bind(this);
         this.volumeOn = this.volumeOn.bind(this);
-        this.setMetadata = this.setMetadata.bind(this);
-        this.getCurrentTime = this.getCurrentTime.bind(this);
         this.setSong = this.setSong.bind(this);
-
-        this.tag.addEventListener("timeupdate", this.setTime.bind(this));
-        this.tag.addEventListener("timeupdate", this.updateBar.bind(this));
-    }
-
-    setMetadata(song) {
-        this.titleHeading.innerHTML = song.getTitle();
-        this.artistHeading.innerHTML = song.getArtist();
-        this.coverImage.style.backgroundImage = "url(" + song.getCover() + ")";
+        this.getProgress = this.getProgress.bind(this);
+        this.getTime = this.getTime.bind(this);
     }
 
     setSong(song) {
         this.audioSource.setAttribute("src", song.getSource());
-        this.tag.load();
+        UIElements.tag.load();
     }
 
     play() {
-        this.tag.play();
-        this.playButton.style.display = "none";
-        this.pauseButton.classList.remove("d-none");
+        UIElements.tag.play()
+        UIManager.togglePlayPause();
+        // .then(() => {
+        //     console.log("Song is playing");
+        // })
+        // .catch((error) => {
+        //    console.error("An Error occured");
+        // })
     }
 
     pause() {
         this.tag.pause();
-        this.playButton.style.display = "";
-        this.pauseButton.classList.add("d-none");
+        UIManager.togglePausePlay();
     }
 
     increaseVolume() {
@@ -66,19 +51,16 @@ export class AudioElement{
 
     volumeOff() {
         this.tag.volume = 0.0;
-        this.volumeOffButton.style.display = "none";
-        this.volumeOnButton.classList.remove("d-none");
+        UIManager.toggleVolumeOff();
     }
 
     volumeOn() {
         this.tag.volume = 0.5;
-        this.volumeOnButton.classList.add("d-none");
-        this.volumeOffButton.style.display = "";
+        UIManager.toggleVolumeOn();
     }
 
-    updateBar() {
-        var percentage = this.tag.currentTime / this.tag.duration * 100 + "%";
-        this.progress.style.width = percentage;
+    getProgress() {
+        return this.tag.currentTime / this.tag.duration * 100 + "%";
     }
 
     convertTime(myTime) {
@@ -93,12 +75,7 @@ export class AudioElement{
         return minutes + ":" + seconds;
     }
 
-    setTime() {
-        this.displayCurrentTime.innerHTML = this.convertTime(this.tag.currentTime);
-        this.displayFullTime.innerHTML = this.convertTime(this.tag.duration);
-    }
-
-    getCurrentTime() {
-        return this.tag.currentTime;
+    getTime() {
+        return this.convertTime(this.tag.currentTime)
     }
 }

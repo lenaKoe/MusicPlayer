@@ -8,6 +8,7 @@ $dark-background:       rgba(85, 85, 85, 0.3);
 $white-background:      $white;
 $text-light:            $white;
 $text-dark:             darkgrey;
+$light-grey:            #ccc;
 
 
 $primary-font: "Francois One", sans-serif;
@@ -24,7 +25,5 @@ $smartphone-screensize: 576px;
 $content-height-desktop: calc(100vh - 78px);//oder 100%
 $content-height-mobile: calc(100vh - 64px);//oder 100%
 
-
-
-$playlist-height-desktop: calc((((((100vh - 78px) - 32px) - 166px) - 190px) - 75px) - 80px);
-$playlist-height-mobile: calc(((((100vh - 64px) - 32px) - 136px) - 136px) - 55px);
+$playlist-height-desktop: calc((((((100vh - 78px) - 32px) - 193px) - 190px) - 75px) - 80px);
+$playlist-height-mobile: calc(((((100vh - 64px) - 32px) - 153px) - 136px) - 55px);

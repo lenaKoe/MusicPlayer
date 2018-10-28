@@ -1,44 +1,26 @@
+import { runInThisContext } from "vm";
+
 export class Playlist{
-    constructor(songs, titlesRow, artistsRow, durationsRow, playlistRow, item) {
+    constructor(songs, listTitle) {
         this.songs = songs;
-        this.titlesRow = titlesRow;
-        this.artistsRow = artistsRow;
-        this.durationsRow = durationsRow;
-        this.playlistRow = playlistRow;
-        this.item = item;
+        this.listTitle = listTitle;
         this.currentSongIndex = 0;
-
-        this.createPlaylist = this.createPlaylist.bind(this);
-        this.getCurrentSong = this.getCurrentSong.bind(this);
-        this.getPreviousSong = this.getPreviousSong.bind(this);
-        this.getNextSong = this.getNextSong.bind(this);
+        
         this.switchToSong = this.switchToSong.bind(this);
-
-        this.createPlaylist();
+        this.getCurrentSong = this.getCurrentSong.bind(this);
+        this.getNextSong = this.getNextSong.bind(this);
+        this.getPreviousSong = this.getPreviousSong.bind(this);
     }
 
-    createPlaylist() {
-        this.artistsRow[0].innerHTML = this.songs[0].getArtist();
-        this.titlesRow[0].innerHTML = this.songs[0].getTitle();
-        for (var i = 1; i < this.songs.length; i++) {
-            var original = this.playlistRow;
-            var copy = original.cloneNode(true);
-            original.parentNode.appendChild(copy);
-            this.artistsRow[0].innerHTML = this.songs[i].getArtist(); //ist [0] nicht unlogisch?
-            this.titlesRow[0].innerHTML = this.songs[i].getTitle();
-        }
-
-        this.item[0].classList.add("active-song");
-
-        for (var i = 0; i < this.item.length; i++) {
-            var title = this.item[i].getElementsByClassName("title-item")[0].innerHTML;
-            this.item[i].dataset.indexNumber = this.songs.findIndex(function (song) {
-                return title === song.getTitle();
-            });
-        }
+    getListTitle(){
+        return this.listTitle;
     }
 
-    switchToSong(index) {
+    getSongs(){
+        return this.songs;
+    }
+
+    switchToSong(index) { 
         this.currentSongIndex = index;
     }
 
@@ -56,3 +38,11 @@ export class Playlist{
         return this.getCurrentSong();
     }
 }
+
+    // createPlaylist(name){
+    //     //id
+    // }
+    // addSongToPlaylist(playlistId, song) {    
+    //}
+    //static createPlaylist(songs) {
+    // }
